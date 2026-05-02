@@ -17,7 +17,8 @@ public class Main {
         double real_center = 0;
         double imag_center = 0;
         double step = 0.005;
-        Calculator calculator = new MandelbrotCalculator();
+        int iterations = 20;
+        Calculator calculator = new MandelbrotCalculator(iterations);
 
         SwingUtilities.invokeLater(() -> {
             FractalVisualizer fractalVisualizer = new FractalVisualizer(real_center, imag_center, step, calculator, w, h);
