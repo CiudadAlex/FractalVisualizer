@@ -5,6 +5,7 @@ import org.leviatanplatform.fractal.engine.calculators.Calculator;
 
 import javax.swing.*;
 import java.awt.*;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,9 +15,9 @@ public class FractalVisualizer {
 
     private PixelCanvas pixelCanvas;
     private ComplexPlane complexPlane;
-    private double real_center;
-    private double imag_center;
-    private double step;
+    private BigDecimal real_center;
+    private BigDecimal imag_center;
+    private BigDecimal step;
     private int w;
     private int h;
     private Calculator calculator;
@@ -27,9 +28,9 @@ public class FractalVisualizer {
     public FractalVisualizer(double real_center, double imag_center, double step, Calculator calculator, int w, int h, int iterations, boolean usePrecision) {
         this.pixelCanvas = new PixelCanvas(w, h);
         this.complexPlane = new ComplexPlane(real_center - w * step/2, imag_center - h * step/2, step, w, h);
-        this.real_center = real_center;
-        this.imag_center = imag_center;
-        this.step = step;
+        this.real_center = new BigDecimal(real_center);
+        this.imag_center = new BigDecimal(imag_center);
+        this.step = new BigDecimal(step);
         this.w = w;
         this.h = h;
         this.calculator = calculator;
@@ -56,10 +57,13 @@ public class FractalVisualizer {
 
     public void translate(int stepsReal, int stepsImag) {
 
-        this.real_center = this.real_center + stepsReal * step;
-        this.imag_center = this.imag_center + stepsImag * step;
-        this.complexPlane = new ComplexPlane(real_center - w * step/2, imag_center - h * step/2, step, w, h);
+        // this.real_center = this.real_center + stepsReal * step;
+        this.real_center = this.real_center.add(step.multiply(new BigDecimal(stepsReal)));
 
+        // this.imag_center = this.imag_center + stepsImag * step;
+        this.imag_center = this.imag_center.add(step.multiply(new BigDecimal(stepsImag)));
+
+        rebuildComplexPlane();
         paintCanvas();
     }
 
@@ -76,10 +80,22 @@ public class FractalVisualizer {
 
     public void zoom(double times) {
 
-        this.step = times * step;
-        this.complexPlane = new ComplexPlane(real_center - w * step/2, imag_center - h * step/2, step, w, h);
+        // this.step = times * step;
+        this.step = step.multiply(new BigDecimal(times));
 
+        rebuildComplexPlane();
         paintCanvas();
+    }
+
+    private void rebuildComplexPlane() {
+
+        // double real_min = real_center - w * step/2;
+        BigDecimal real_min = real_center.subtract(step.multiply(new BigDecimal(w/2.0)));
+
+        // double imag_min = imag_center - h * step/2;
+        BigDecimal imag_min = imag_center.subtract(step.multiply(new BigDecimal(h/2.0)));
+
+        this.complexPlane = new ComplexPlane(real_min, imag_min, step, w, h);
     }
 
     public void paintCanvas() {
