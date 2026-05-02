@@ -14,6 +14,6 @@ public class JuliaCalculator implements Calculator {
 
     @Override
     public double calculate(double real, double imaginary) {
-        return JuliaUtils.calculate(real, imaginary, c_real, c_imaginary, 7);
+        return JuliaUtils.calculate(real, imaginary, c_real, c_imaginary, 20);
     }
 }

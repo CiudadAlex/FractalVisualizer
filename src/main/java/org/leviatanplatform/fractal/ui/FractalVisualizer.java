@@ -31,7 +31,7 @@ public class FractalVisualizer {
 
             frame = new JFrame("Fractal");
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            frame.setSize(w + 30, h + 30);
+            frame.setSize(w + 30, h + 50);
             frame.setVisible(true);
             frame.setResizable(false);
             frame.addKeyListener(new CommandListener(pixelCanvas));
