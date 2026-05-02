@@ -43,15 +43,19 @@ public class FractalVisualizer {
             frame.add(pixelCanvas);
         }
 
+        paintCanvas();
+    }
+
+    public void paintCanvas() {
         SwingUtilities.invokeLater(() -> {
-            paintCanvas();
+            innerPaintCanvas();
             pixelCanvas.invalidate();
             pixelCanvas.validate();
             pixelCanvas.repaint();
         });
     }
 
-    public void paintCanvas() {
+    public void innerPaintCanvas() {
 
         complexPlane.calculate(calculator);
 
