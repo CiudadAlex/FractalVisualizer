@@ -61,6 +61,17 @@ public class FractalVisualizer {
         paintCanvas();
     }
 
+    public void iterations(double times) {
+
+        this.iterations = (int) Math.round(times * this.iterations);
+
+        if (this.iterations < 10) {
+            this.iterations = 10;
+        }
+
+        paintCanvas();
+    }
+
     public void zoom(double times) {
 
         this.step = times * step;

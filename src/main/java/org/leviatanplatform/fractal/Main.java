@@ -10,7 +10,6 @@ import javax.swing.*;
 public class Main {
 
     // FIXME execute in multiple threads
-    // FIXME zoom and navigate
 
     public static void main(String[] args) {
 

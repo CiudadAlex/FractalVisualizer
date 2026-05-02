@@ -11,8 +11,6 @@ public class CommandListener extends KeyAdapter {
         this.fractalVisualizer = fractalVisualizer;
     }
 
-    // FIXME finish zoom in and out
-
     public void keyPressed(KeyEvent e) {
 
         int keyCode = e.getKeyCode();
@@ -23,6 +21,8 @@ public class CommandListener extends KeyAdapter {
             case KeyEvent.VK_RIGHT -> right();
             case KeyEvent.VK_Q -> zoomIn();
             case KeyEvent.VK_A -> zoomOut();
+            case KeyEvent.VK_O -> decreaseIterations();
+            case KeyEvent.VK_P -> increaseIterations();
         }
     }
 
@@ -48,5 +48,13 @@ public class CommandListener extends KeyAdapter {
 
     private void zoomOut() {
         fractalVisualizer.zoom(2);
+    }
+
+    private void decreaseIterations() {
+        fractalVisualizer.iterations(0.5);
+    }
+
+    private void increaseIterations() {
+        fractalVisualizer.iterations(2);
     }
 }
