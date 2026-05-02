@@ -21,7 +21,7 @@ public class Main {
         Calculator calculator = new MandelbrotCalculator(iterations);
 
         SwingUtilities.invokeLater(() -> {
-            FractalVisualizer fractalVisualizer = new FractalVisualizer(real_center, imag_center, step, calculator, w, h);
+            FractalVisualizer fractalVisualizer = new FractalVisualizer(real_center, imag_center, step, calculator, w, h, iterations);
             fractalVisualizer.show();
         });
     }

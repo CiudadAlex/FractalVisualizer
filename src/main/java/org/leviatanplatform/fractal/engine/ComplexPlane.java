@@ -9,7 +9,7 @@ public class ComplexPlane {
     private final double step;
     private final int mumber_steps_real;
     private final int mumber_steps_imag;
-    private final double[][] plane;
+    private final int[][] plane;
 
     public ComplexPlane(double real_min, double imag_min, double step, int mumber_steps_real, int mumber_steps_imag) {
         this.real_min = real_min;
@@ -18,7 +18,7 @@ public class ComplexPlane {
         this.mumber_steps_real = mumber_steps_real;
         this.mumber_steps_imag = mumber_steps_imag;
 
-        plane = new double[mumber_steps_real][mumber_steps_imag];
+        plane = new int[mumber_steps_real][mumber_steps_imag];
     }
 
     public void calculate(Calculator calculator) {
@@ -34,7 +34,7 @@ public class ComplexPlane {
         }
     }
 
-    public double getValue(int r, int i) {
+    public int getValue(int r, int i) {
         return plane[r][i];
     }
 

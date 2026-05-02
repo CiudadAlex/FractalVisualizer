@@ -11,7 +11,7 @@ public class MandelbrotCalculator implements Calculator {
     }
 
     @Override
-    public double calculate(double real, double imaginary) {
+    public int calculate(double real, double imaginary) {
         return JuliaUtils.calculate(0, 0, real, imaginary, iterations);
     }
 }

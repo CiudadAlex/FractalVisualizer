@@ -13,7 +13,7 @@ package org.leviatanplatform.fractal.engine.calculators.utils;
  */
 public class JuliaUtils {
 
-    public static double calculate(double z_real, double z_imaginary, double c_real, double c_imaginary, int iterations) {
+    public static int calculate(double z_real, double z_imaginary, double c_real, double c_imaginary, int iterations) {
 
         double zre = z_real;
         double zim = z_imaginary;
@@ -25,10 +25,17 @@ public class JuliaUtils {
 
             zre = z2re + c_real;
             zim = z2im + c_imaginary;
+
+            double modulus = zre * zre + zim * zim;
+
+            if (modulus > 1) {
+                // If exits return iteration
+                return i;
+            }
         }
 
-        // Return modulus
-        return zre * zre + zim * zim;
+        // Never exited in those iterations
+        return -1;
     }
 
 

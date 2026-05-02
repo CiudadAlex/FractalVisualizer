@@ -16,13 +16,15 @@ public class FractalVisualizer {
     private int h;
     private Calculator calculator;
     private JFrame frame;
+    private int iterations;
 
-    public FractalVisualizer(double real_center, double imag_center, double step, Calculator calculator, int w, int h) {
+    public FractalVisualizer(double real_center, double imag_center, double step, Calculator calculator, int w, int h, int iterations) {
         this.pixelCanvas = new PixelCanvas(w, h);
         this.complexPlane = new ComplexPlane(real_center - w * step/2, imag_center - h * step/2, step, w, h);
         this.w = w;
         this.h = h;
         this.calculator = calculator;
+        this.iterations = iterations;
     }
 
     public void show() {
@@ -53,7 +55,7 @@ public class FractalVisualizer {
 
         for (int r = 0; r < w; r++) {
             for (int i = 0; i < h; i++) {
-                double value = complexPlane.getValue(r, i);
+                int value = complexPlane.getValue(r, i);
                 Color color = getColor(value);
                 pixelCanvas.setPixel(r, h - 1 - i, color);
             }
@@ -64,7 +66,7 @@ public class FractalVisualizer {
 
     private Color getColor(double value) {
 
-        if (value <= 1) {
+        if (value == -1) {
             return Color.black;
         }
 
@@ -72,6 +74,8 @@ public class FractalVisualizer {
     }
 
     private Color rainbowEffect(double value) {
+
+        // FIXME readapt
 
         double valueGrounded = value - 1;
 
