@@ -1,6 +1,6 @@
-package org.leviatanplatform.fractal.engine;
+package org.leviatanplatform.fractal.engine.calculators;
 
-import org.leviatanplatform.fractal.engine.utils.JuliaUtils;
+import org.leviatanplatform.fractal.engine.calculators.utils.JuliaUtils;
 
 public class MandelbrotCalculator implements Calculator {
 

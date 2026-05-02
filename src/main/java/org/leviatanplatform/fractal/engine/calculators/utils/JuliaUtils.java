@@ -1,4 +1,4 @@
-package org.leviatanplatform.fractal.engine.utils;
+package org.leviatanplatform.fractal.engine.calculators.utils;
 
 /**
  * General Formulae:

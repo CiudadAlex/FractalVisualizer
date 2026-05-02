@@ -1,4 +1,4 @@
-package org.leviatanplatform.fractal.engine;
+package org.leviatanplatform.fractal.engine.calculators;
 
 public interface Calculator {
 
