@@ -17,8 +17,8 @@ public class JuliaCalculator implements Calculator {
         this.c_imaginary = c_imaginary;
         this.iterations = iterations;
 
-        this.bd_c_real = new BigDecimal(c_real);
-        this.bd_c_imaginary = new BigDecimal(c_imaginary);
+        this.bd_c_real = BigDecimal.valueOf(c_real);
+        this.bd_c_imaginary = BigDecimal.valueOf(c_imaginary);
     }
 
     public JuliaCalculator(BigDecimal bd_c_real, BigDecimal bd_c_imaginary, int iterations) {

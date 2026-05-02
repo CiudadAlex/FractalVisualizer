@@ -28,9 +28,9 @@ public class FractalVisualizer {
     public FractalVisualizer(double real_center, double imag_center, double step, Calculator calculator, int w, int h, int iterations, boolean usePrecision) {
         this.pixelCanvas = new PixelCanvas(w, h);
         this.complexPlane = new ComplexPlane(real_center - w * step/2, imag_center - h * step/2, step, w, h);
-        this.real_center = new BigDecimal(real_center);
-        this.imag_center = new BigDecimal(imag_center);
-        this.step = new BigDecimal(step);
+        this.real_center = BigDecimal.valueOf(real_center);
+        this.imag_center = BigDecimal.valueOf(imag_center);
+        this.step = BigDecimal.valueOf(step);
         this.w = w;
         this.h = h;
         this.calculator = calculator;
@@ -58,10 +58,10 @@ public class FractalVisualizer {
     public void translate(int stepsReal, int stepsImag) {
 
         // this.real_center = this.real_center + stepsReal * step;
-        this.real_center = this.real_center.add(step.multiply(new BigDecimal(stepsReal)));
+        this.real_center = this.real_center.add(step.multiply(BigDecimal.valueOf(stepsReal)));
 
         // this.imag_center = this.imag_center + stepsImag * step;
-        this.imag_center = this.imag_center.add(step.multiply(new BigDecimal(stepsImag)));
+        this.imag_center = this.imag_center.add(step.multiply(BigDecimal.valueOf(stepsImag)));
 
         rebuildComplexPlane();
         paintCanvas();
@@ -81,7 +81,7 @@ public class FractalVisualizer {
     public void zoom(double times) {
 
         // this.step = times * step;
-        this.step = step.multiply(new BigDecimal(times));
+        this.step = step.multiply(BigDecimal.valueOf(times));
 
         rebuildComplexPlane();
         paintCanvas();
@@ -90,10 +90,10 @@ public class FractalVisualizer {
     private void rebuildComplexPlane() {
 
         // double real_min = real_center - w * step/2;
-        BigDecimal real_min = real_center.subtract(step.multiply(new BigDecimal(w/2.0)));
+        BigDecimal real_min = real_center.subtract(step.multiply(BigDecimal.valueOf(w/2.0)));
 
         // double imag_min = imag_center - h * step/2;
-        BigDecimal imag_min = imag_center.subtract(step.multiply(new BigDecimal(h/2.0)));
+        BigDecimal imag_min = imag_center.subtract(step.multiply(BigDecimal.valueOf(h/2.0)));
 
         this.complexPlane = new ComplexPlane(real_min, imag_min, step, w, h);
     }

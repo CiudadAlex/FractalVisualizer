@@ -26,9 +26,9 @@ public class ComplexPlane {
         this.mumber_steps_real = mumber_steps_real;
         this.mumber_steps_imag = mumber_steps_imag;
 
-        this.bd_real_min = new BigDecimal(real_min);
-        this.bd_imag_min = new BigDecimal(imag_min);
-        this.bd_step = new BigDecimal(step);
+        this.bd_real_min = BigDecimal.valueOf(real_min);
+        this.bd_imag_min = BigDecimal.valueOf(imag_min);
+        this.bd_step = BigDecimal.valueOf(step);
 
         plane = new int[mumber_steps_real][mumber_steps_imag];
     }
@@ -71,8 +71,8 @@ public class ComplexPlane {
         for (int r = 0; r < mumber_steps_real; r++) {
             for (int i = 0; i < mumber_steps_imag; i++) {
 
-                BigDecimal real = bd_real_min.add(bd_step.multiply(new BigDecimal(r)));
-                BigDecimal imaginary = bd_imag_min.add(bd_step.multiply(new BigDecimal(i)));
+                BigDecimal real = bd_real_min.add(bd_step.multiply(BigDecimal.valueOf(r)));
+                BigDecimal imaginary = bd_imag_min.add(bd_step.multiply(BigDecimal.valueOf(i)));
 
                 plane[r][i] = calculator.calculate(real, imaginary);
             }
