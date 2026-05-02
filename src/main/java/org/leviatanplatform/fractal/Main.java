@@ -12,12 +12,12 @@ public class Main {
 
     public static void main(String[] args) {
 
-        int w = 640;
-        int h = 640;
+        int w = 800;
+        int h = 800;
         double real_center = 0;
         double imag_center = 0;
         double step = 0.005;
-        int iterations = 20;
+        int iterations = 30;
         Calculator calculator = new MandelbrotCalculator(iterations);
 
         SwingUtilities.invokeLater(() -> {
