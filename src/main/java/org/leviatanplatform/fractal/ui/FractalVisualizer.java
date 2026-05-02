@@ -5,10 +5,12 @@ import org.leviatanplatform.fractal.engine.calculators.Calculator;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class FractalVisualizer {
 
-    private static final double RAINBOW_EFFECT_TRANSITION_STEP = 0.01;
+    private static final List<Color> LIST_COLORS = generateListColor();
 
     private PixelCanvas pixelCanvas;
     private ComplexPlane complexPlane;
@@ -55,8 +57,8 @@ public class FractalVisualizer {
 
         for (int r = 0; r < w; r++) {
             for (int i = 0; i < h; i++) {
-                int value = complexPlane.getValue(r, i);
-                Color color = getColor(value);
+                int escapedIteration = complexPlane.getValue(r, i);
+                Color color = getColor(escapedIteration);
                 pixelCanvas.setPixel(r, h - 1 - i, color);
             }
         }
@@ -64,51 +66,60 @@ public class FractalVisualizer {
         pixelCanvas.repaint();
     }
 
-    private Color getColor(double value) {
+    private Color getColor(int escapedIteration) {
 
-        if (value == -1) {
+        if (escapedIteration == -1) {
             return Color.black;
         }
 
-        return rainbowEffect(value);
+        return rainbowEffect(escapedIteration);
     }
 
-    private Color rainbowEffect(double value) {
+    private Color rainbowEffect(int escapedIteration) {
 
-        // FIXME readapt
+        // escapeVelocity  --> iterations
+        // x               --> numColors
 
-        double valueGrounded = value - 1;
+        int escapeVelocity = iterations - escapedIteration;
+        int numColors = LIST_COLORS.size();
+        int indexColor = escapeVelocity * numColors / iterations;
 
-        double transitionStep = RAINBOW_EFFECT_TRANSITION_STEP;
-        double colorStep = transitionStep / 255;
-
-        if (valueGrounded < transitionStep) {
-            int g = (int) Math.floor(valueGrounded / colorStep);
-            return getColor(255, g, 0);
+        if (indexColor > numColors - 1) {
+            indexColor = numColors - 1;
         }
 
-        valueGrounded = valueGrounded - transitionStep;
-
-        if (valueGrounded < transitionStep) {
-            int r = 255 - (int) Math.floor(valueGrounded / colorStep);
-            return getColor(r, 255, 0);
+        if (indexColor < 0) {
+            indexColor = 0;
         }
 
-        valueGrounded = valueGrounded - transitionStep;
+        return LIST_COLORS.get(indexColor);
+    }
 
-        if (valueGrounded < transitionStep) {
-            int b = (int) Math.floor(valueGrounded / colorStep);
-            return getColor(0, 255, b);
+    private static List<Color> generateListColor() {
+
+        List<Color> listColor = new ArrayList<>();
+
+        for (int i = 0; i < 255; i++) {
+            listColor.add(new Color(i, 0, 0));
         }
 
-        valueGrounded = valueGrounded - transitionStep;
-
-        if (valueGrounded < transitionStep) {
-            int g = 255 - (int) Math.floor(valueGrounded / colorStep);
-            return getColor(0, g, 255);
+        for (int i = 0; i < 255; i++) {
+            listColor.add(new Color(255, i, 0));
         }
 
-        return getColor(0, 0, 255);
+        for (int i = 0; i < 255; i++) {
+            listColor.add(new Color(255 - i, 255, 0));
+        }
+
+        for (int i = 0; i < 255; i++) {
+            listColor.add(new Color(0, 255, i));
+        }
+
+        for (int i = 0; i < 255; i++) {
+            listColor.add(new Color(0, 255 - i, 255));
+        }
+
+        return listColor;
     }
 
     private Color getColor(int r, int g, int b) {
