@@ -19,7 +19,7 @@ public class Main {
         double real_center = 0;
         double imag_center = 0;
         double step = 0.005;
-        int iterations = 30;
+        int iterations = 100;
         boolean isMandelbrot = true;
 
         Calculator mandelbrotCalculator = new MandelbrotCalculator(iterations);
