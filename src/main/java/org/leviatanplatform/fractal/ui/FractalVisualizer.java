@@ -8,6 +8,8 @@ import java.awt.*;
 
 public class FractalVisualizer {
 
+    private static final double RAINBOW_EFFECT_TRANSITION_STEP = 0.01;
+
     private PixelCanvas pixelCanvas;
     private ComplexPlane complexPlane;
     private int w;
@@ -27,9 +29,9 @@ public class FractalVisualizer {
 
         if (frame == null) {
 
-            frame = new JFrame("Navigator 4D: Rotations (1-6,Q-Y) Translations (A-F,Z-V) Figure (N,M) Projection (H,J)");
+            frame = new JFrame("Fractal");
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            frame.setSize(1600, 900);
+            frame.setSize(w + 30, h + 30);
             frame.setVisible(true);
             frame.setResizable(false);
             frame.addKeyListener(new CommandListener(pixelCanvas));
@@ -38,6 +40,7 @@ public class FractalVisualizer {
         }
 
         SwingUtilities.invokeLater(() -> {
+            paintCanvas();
             pixelCanvas.invalidate();
             pixelCanvas.validate();
             pixelCanvas.repaint();
@@ -72,7 +75,7 @@ public class FractalVisualizer {
 
         double valueGrounded = value - 1;
 
-        double transitionStep = 0.1;
+        double transitionStep = RAINBOW_EFFECT_TRANSITION_STEP;
         double colorStep = transitionStep / 255;
 
         if (valueGrounded < transitionStep) {

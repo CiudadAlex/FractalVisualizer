@@ -9,7 +9,6 @@ import javax.swing.*;
 public class Main {
 
     // FIXME execute in multiple threads
-    // FIXME show in a canvas
 
     public static void main(String[] args) {
 
@@ -22,7 +21,7 @@ public class Main {
 
         SwingUtilities.invokeLater(() -> {
             FractalVisualizer fractalVisualizer = new FractalVisualizer(real_center, imag_center, step, calculator, w, h);
-            fractalVisualizer.paintCanvas();
+            fractalVisualizer.show();
         });
     }
 }
