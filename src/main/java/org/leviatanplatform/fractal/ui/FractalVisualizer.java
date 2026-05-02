@@ -3,6 +3,7 @@ package org.leviatanplatform.fractal.ui;
 import org.leviatanplatform.fractal.engine.ComplexPlane;
 import org.leviatanplatform.fractal.engine.calculators.Calculator;
 
+import javax.swing.*;
 import java.awt.*;
 
 public class FractalVisualizer {
@@ -11,8 +12,8 @@ public class FractalVisualizer {
     private ComplexPlane complexPlane;
     private int w;
     private int h;
-
     private Calculator calculator;
+    private JFrame frame;
 
     public FractalVisualizer(double real_center, double imag_center, double step, Calculator calculator, int w, int h) {
         this.pixelCanvas = new PixelCanvas(w, h);
@@ -20,6 +21,27 @@ public class FractalVisualizer {
         this.w = w;
         this.h = h;
         this.calculator = calculator;
+    }
+
+    public void show() {
+
+        if (frame == null) {
+
+            frame = new JFrame("Navigator 4D: Rotations (1-6,Q-Y) Translations (A-F,Z-V) Figure (N,M) Projection (H,J)");
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.setSize(1600, 900);
+            frame.setVisible(true);
+            frame.setResizable(false);
+            frame.addKeyListener(new CommandListener(pixelCanvas));
+
+            frame.add(pixelCanvas);
+        }
+
+        SwingUtilities.invokeLater(() -> {
+            pixelCanvas.invalidate();
+            pixelCanvas.validate();
+            pixelCanvas.repaint();
+        });
     }
 
     public void paintCanvas() {
