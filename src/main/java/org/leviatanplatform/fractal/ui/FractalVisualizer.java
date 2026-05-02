@@ -43,8 +43,76 @@ public class FractalVisualizer {
             return Color.black;
         }
 
-        return Color.black;
+        return rainbowEffect(value);
     }
 
-    // FIXME finish
+    private Color rainbowEffect(double value) {
+
+        double valueGrounded = value - 1;
+
+        double transitionStep = 0.1;
+        double colorStep = transitionStep / 255;
+
+        if (valueGrounded < transitionStep) {
+            int g = (int) Math.floor(valueGrounded / colorStep);
+            return getColor(255, g, 0);
+        }
+
+        valueGrounded = valueGrounded - transitionStep;
+
+        if (valueGrounded < transitionStep) {
+            int r = 255 - (int) Math.floor(valueGrounded / colorStep);
+            return getColor(r, 255, 0);
+        }
+
+        valueGrounded = valueGrounded - transitionStep;
+
+        if (valueGrounded < transitionStep) {
+            int b = (int) Math.floor(valueGrounded / colorStep);
+            return getColor(0, 255, b);
+        }
+
+        valueGrounded = valueGrounded - transitionStep;
+
+        if (valueGrounded < transitionStep) {
+            int g = 255 - (int) Math.floor(valueGrounded / colorStep);
+            return getColor(0, g, 255);
+        }
+
+        return getColor(0, 0, 255);
+    }
+
+    private Color getColor(int r, int g, int b) {
+
+        int r_ok = r;
+        int g_ok = g;
+        int b_ok = b;
+
+        if (r_ok < 0) {
+            r_ok = 0;
+        }
+
+        if (r_ok > 255) {
+            r_ok = 255;
+        }
+
+        if (g_ok < 0) {
+            g_ok = 0;
+        }
+
+        if (g_ok > 255) {
+            g_ok = 255;
+        }
+
+        if (b_ok < 0) {
+            b_ok = 0;
+        }
+
+        if (b_ok > 255) {
+            b_ok = 255;
+        }
+
+        return new Color(r_ok, g_ok, b_ok);
+    }
+
 }
