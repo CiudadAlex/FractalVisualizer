@@ -14,6 +14,9 @@ public class FractalVisualizer {
 
     private PixelCanvas pixelCanvas;
     private ComplexPlane complexPlane;
+    private double real_center;
+    private double imag_center;
+    private double step;
     private int w;
     private int h;
     private Calculator calculator;
@@ -23,6 +26,9 @@ public class FractalVisualizer {
     public FractalVisualizer(double real_center, double imag_center, double step, Calculator calculator, int w, int h, int iterations) {
         this.pixelCanvas = new PixelCanvas(w, h);
         this.complexPlane = new ComplexPlane(real_center - w * step/2, imag_center - h * step/2, step, w, h);
+        this.real_center = real_center;
+        this.imag_center = imag_center;
+        this.step = step;
         this.w = w;
         this.h = h;
         this.calculator = calculator;
@@ -38,10 +44,19 @@ public class FractalVisualizer {
             frame.setSize(w + 30, h + 50);
             frame.setVisible(true);
             frame.setResizable(false);
-            frame.addKeyListener(new CommandListener(pixelCanvas));
+            frame.addKeyListener(new CommandListener(this));
 
             frame.add(pixelCanvas);
         }
+
+        paintCanvas();
+    }
+
+    public void translate(int stepsReal, int stepsImag) {
+
+        this.real_center = this.real_center + stepsReal * step;
+        this.imag_center = this.imag_center + stepsImag * step;
+        this.complexPlane = new ComplexPlane(real_center - w * step/2, imag_center - h * step/2, step, w, h);
 
         paintCanvas();
     }

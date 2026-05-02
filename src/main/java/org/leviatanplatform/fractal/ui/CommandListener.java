@@ -1,18 +1,17 @@
 package org.leviatanplatform.fractal.ui;
 
-import javax.swing.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 public class CommandListener extends KeyAdapter {
 
-    private PixelCanvas pixelCanvas;
+    private FractalVisualizer fractalVisualizer;
 
-    public CommandListener(PixelCanvas pixelCanvas) {
-        this.pixelCanvas = pixelCanvas;
+    public CommandListener(FractalVisualizer fractalVisualizer) {
+        this.fractalVisualizer = fractalVisualizer;
     }
 
-    // FIXME finish
+    // FIXME finish zoom in and out
 
     public void keyPressed(KeyEvent e) {
 
@@ -23,23 +22,21 @@ public class CommandListener extends KeyAdapter {
             case KeyEvent.VK_LEFT -> left();
             case KeyEvent.VK_RIGHT -> right();
         }
-
-        SwingUtilities.invokeLater(() -> {
-            pixelCanvas.invalidate();
-            pixelCanvas.validate();
-            pixelCanvas.repaint();
-        });
     }
 
     private void up() {
+        fractalVisualizer.translate(0, 30);
     }
 
     private void down() {
+        fractalVisualizer.translate(0, -30);
     }
 
     private void left() {
+        fractalVisualizer.translate(-30, 0);
     }
 
     private void right() {
+        fractalVisualizer.translate(30, 0);
     }
 }
