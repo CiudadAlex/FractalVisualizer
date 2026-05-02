@@ -91,6 +91,8 @@ public class FractalVisualizer {
 
     public void innerPaintCanvas() {
 
+        // FIXME use calculatePrecision
+
         complexPlane.calculate(calculator);
 
         for (int r = 0; r < w; r++) {
