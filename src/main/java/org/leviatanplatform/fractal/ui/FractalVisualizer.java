@@ -61,6 +61,14 @@ public class FractalVisualizer {
         paintCanvas();
     }
 
+    public void zoom(double times) {
+
+        this.step = times * step;
+        this.complexPlane = new ComplexPlane(real_center - w * step/2, imag_center - h * step/2, step, w, h);
+
+        paintCanvas();
+    }
+
     public void paintCanvas() {
         SwingUtilities.invokeLater(() -> {
             innerPaintCanvas();
