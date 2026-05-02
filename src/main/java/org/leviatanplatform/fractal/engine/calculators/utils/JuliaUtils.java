@@ -28,7 +28,7 @@ public class JuliaUtils {
 
             double modulus = zre * zre + zim * zim;
 
-            if (modulus > 1) {
+            if (modulus > 10) {
                 // If exits return iteration
                 return i;
             }
