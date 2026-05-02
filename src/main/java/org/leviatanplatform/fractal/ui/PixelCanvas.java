@@ -14,7 +14,6 @@ public class PixelCanvas extends JPanel {
 
     public void setPixel(int x, int y, Color color) {
         canvas.setRGB(x, y, color.getRGB());
-        repaint(); // FIXME quitar solicita redibujado
     }
 
     @Override

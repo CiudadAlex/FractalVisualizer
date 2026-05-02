@@ -34,5 +34,8 @@ public class ComplexPlane {
         }
     }
 
+    public double getValue(int r, int i) {
+        return plane[r][i];
+    }
 
 }
