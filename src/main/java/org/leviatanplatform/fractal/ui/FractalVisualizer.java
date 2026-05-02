@@ -22,8 +22,9 @@ public class FractalVisualizer {
     private Calculator calculator;
     private JFrame frame;
     private int iterations;
+    private boolean usePrecision;
 
-    public FractalVisualizer(double real_center, double imag_center, double step, Calculator calculator, int w, int h, int iterations) {
+    public FractalVisualizer(double real_center, double imag_center, double step, Calculator calculator, int w, int h, int iterations, boolean usePrecision) {
         this.pixelCanvas = new PixelCanvas(w, h);
         this.complexPlane = new ComplexPlane(real_center - w * step/2, imag_center - h * step/2, step, w, h);
         this.real_center = real_center;
@@ -33,6 +34,7 @@ public class FractalVisualizer {
         this.h = h;
         this.calculator = calculator;
         this.iterations = iterations;
+        this.usePrecision = usePrecision;
     }
 
     public void show() {
@@ -91,9 +93,11 @@ public class FractalVisualizer {
 
     public void innerPaintCanvas() {
 
-        // FIXME use calculatePrecision
-
-        complexPlane.calculate(calculator);
+        if (usePrecision) {
+            complexPlane.calculatePrecision(calculator);
+        } else {
+            complexPlane.calculate(calculator);
+        }
 
         for (int r = 0; r < w; r++) {
             for (int i = 0; i < h; i++) {
