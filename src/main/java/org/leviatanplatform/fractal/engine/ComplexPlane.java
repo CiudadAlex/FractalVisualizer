@@ -85,20 +85,28 @@ public class ComplexPlane {
 
         List<Thread> listThread = new ArrayList<>();
 
-        for (List<Integer> subList : partitionR) {
-            // FIXME threads
+        for (List<Integer> subListR : partitionR) {
+            Thread thread = buildCalculationPrecisionThread(calculator, bigDecimalCalculator, subListR);
+            thread.start();
+            listThread.add(thread);
         }
 
         join(listThread);
 
-        for (int r = 0; r < mumber_steps_real; r++) {
-            calculatePrecisionRealColumn(calculator, bigDecimalCalculator, r);
-        }
-
         ticToc.toc("Precision calculus");
     }
 
-    private static void join(List<Thread> listThread) {
+    private Thread buildCalculationPrecisionThread(Calculator calculator, BigDecimalCalculator bigDecimalCalculator, List<Integer> subListR) {
+        return new Thread() {
+            public void run() {
+                for (Integer r: subListR) {
+                    calculatePrecisionRealColumn(calculator, bigDecimalCalculator, r);
+                }
+            }
+        };
+    }
+
+    private void join(List<Thread> listThread) {
 
         for (Thread thread : listThread) {
             try {
