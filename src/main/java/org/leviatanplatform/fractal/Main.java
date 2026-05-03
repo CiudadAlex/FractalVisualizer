@@ -24,6 +24,7 @@ public class Main {
         int iterations = 100;
         boolean isMandelbrot = true;
         boolean usePrecision = false;
+        int precision = 100;
 
         Calculator mandelbrotCalculator = new MandelbrotCalculator(iterations);
         Calculator juliaCalculator = new JuliaCalculator(0.5, -0.3, iterations);
@@ -31,7 +32,7 @@ public class Main {
         Calculator calculator = isMandelbrot ? mandelbrotCalculator : juliaCalculator;
 
         SwingUtilities.invokeLater(() -> {
-            FractalVisualizer fractalVisualizer = new FractalVisualizer(real_center, imag_center, step, calculator, w, h, iterations, usePrecision);
+            FractalVisualizer fractalVisualizer = new FractalVisualizer(real_center, imag_center, step, calculator, w, h, iterations, usePrecision, precision);
             fractalVisualizer.show();
         });
     }
