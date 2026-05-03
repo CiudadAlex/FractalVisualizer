@@ -199,10 +199,6 @@ public class FractalVisualizer {
         List<Color> listColor = new ArrayList<>();
 
         for (int i = 0; i < 255; i++) {
-            listColor.add(new Color(i, 0, 0));
-        }
-
-        for (int i = 0; i < 255; i++) {
             listColor.add(new Color(255, i, 0));
         }
 
