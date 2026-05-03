@@ -10,7 +10,6 @@ import javax.swing.*;
 public class Main {
 
     // FIXME Revisar iterations
-    // FIXME Cambiar con teclas parametros de julia
     // FIXME Nuevos fractales diferentes
 
     public static void main(String[] args) {
