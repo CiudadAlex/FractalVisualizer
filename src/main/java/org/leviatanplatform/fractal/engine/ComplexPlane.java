@@ -69,6 +69,8 @@ public class ComplexPlane {
 
     public void calculatePrecision(Calculator calculator) {
 
+        // FIXME threads
+
         BigDecimalCalculator bigDecimalCalculator = BigDecimalCalculator.get();
 
         System.out.println("Calculation precise: " + bigDecimalCalculator.getPrecision());
@@ -76,16 +78,21 @@ public class ComplexPlane {
         TicToc ticToc = new TicToc();
 
         for (int r = 0; r < mumber_steps_real; r++) {
-            for (int i = 0; i < mumber_steps_imag; i++) {
-
-                BigDecimal real = bd_real_min.add(bigDecimalCalculator.multiply(r, bd_step));
-                BigDecimal imaginary = bd_imag_min.add(bigDecimalCalculator.multiply(i, bd_step));
-
-                plane[r][i] = calculator.calculate(real, imaginary);
-            }
+            calculatePrecisionRealColumn(calculator, bigDecimalCalculator, r);
         }
 
         ticToc.toc("Precision calculus");
+    }
+
+    private void calculatePrecisionRealColumn(Calculator calculator, BigDecimalCalculator bigDecimalCalculator, int r) {
+
+        for (int i = 0; i < mumber_steps_imag; i++) {
+
+            BigDecimal real = bd_real_min.add(bigDecimalCalculator.multiply(r, bd_step));
+            BigDecimal imaginary = bd_imag_min.add(bigDecimalCalculator.multiply(i, bd_step));
+
+            plane[r][i] = calculator.calculate(real, imaginary);
+        }
     }
 
     public int getValue(int r, int i) {
