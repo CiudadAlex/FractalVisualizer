@@ -51,4 +51,8 @@ public class BigDecimalCalculator {
         BigDecimal result = d1.multiply(d2);
         return result.setScale(precision, RoundingMode.DOWN);
     }
+
+    public int getPrecision() {
+        return precision;
+    }
 }

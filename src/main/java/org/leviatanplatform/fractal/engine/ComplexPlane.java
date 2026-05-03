@@ -50,6 +50,8 @@ public class ComplexPlane {
 
     public void calculate(Calculator calculator) {
 
+        System.out.println("Calculation fast");
+
         TicToc ticToc = new TicToc();
 
         for (int r = 0; r < mumber_steps_real; r++) {
@@ -68,6 +70,8 @@ public class ComplexPlane {
     public void calculatePrecision(Calculator calculator) {
 
         BigDecimalCalculator bigDecimalCalculator = BigDecimalCalculator.get();
+
+        System.out.println("Calculation precise: " + bigDecimalCalculator.getPrecision());
 
         TicToc ticToc = new TicToc();
 

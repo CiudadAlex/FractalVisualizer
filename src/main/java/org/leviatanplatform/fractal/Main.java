@@ -24,7 +24,7 @@ public class Main {
         int iterations = 100;
         boolean isMandelbrot = true;
         boolean usePrecision = false;
-        int precision = 100;
+        int precision = 30;
 
         Calculator mandelbrotCalculator = new MandelbrotCalculator(iterations);
         Calculator juliaCalculator = new JuliaCalculator(0.5, -0.3, iterations);
