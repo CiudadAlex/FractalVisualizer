@@ -6,10 +6,10 @@ import java.math.BigDecimal;
 
 public class JuliaCalculator implements Calculator {
 
-    private final double c_real;
-    private final double c_imaginary;
-    private final BigDecimal bd_c_real;
-    private final BigDecimal bd_c_imaginary;
+    private double c_real;
+    private double c_imaginary;
+    private BigDecimal bd_c_real;
+    private BigDecimal bd_c_imaginary;
     private final int iterations;
 
     public JuliaCalculator(double c_real, double c_imaginary, int iterations) {
@@ -38,5 +38,19 @@ public class JuliaCalculator implements Calculator {
     @Override
     public int calculate(BigDecimal real, BigDecimal imaginary) {
         return JuliaUtils.calculate(real, imaginary, bd_c_real, bd_c_imaginary, iterations);
+    }
+
+    @Override
+    public void addToParameter1(double delta) {
+
+        c_real = c_real + delta;
+        bd_c_real = bd_c_real.add(BigDecimal.valueOf(delta));
+    }
+
+    @Override
+    public void addToParameter2(double delta) {
+
+        c_imaginary = c_imaginary + delta;
+        bd_c_imaginary = bd_c_imaginary.add(BigDecimal.valueOf(delta));
     }
 }

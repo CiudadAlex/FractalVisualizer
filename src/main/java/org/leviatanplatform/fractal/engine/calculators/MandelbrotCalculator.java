@@ -21,4 +21,12 @@ public class MandelbrotCalculator implements Calculator {
     public int calculate(BigDecimal real, BigDecimal imaginary) {
         return JuliaUtils.calculate(BigDecimal.ZERO, BigDecimal.ZERO, real, imaginary, iterations);
     }
+
+    @Override
+    public void addToParameter1(double delta) {
+    }
+
+    @Override
+    public void addToParameter2(double delta) {
+    }
 }

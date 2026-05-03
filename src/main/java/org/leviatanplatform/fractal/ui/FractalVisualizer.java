@@ -111,6 +111,16 @@ public class FractalVisualizer {
         refreshAll();
     }
 
+    public void addToCalculatorParameter1(double delta) {
+        this.calculator.addToParameter1(delta);
+        refreshAll();
+    }
+
+    public void addToCalculatorParameter2(double delta) {
+        this.calculator.addToParameter2(delta);
+        refreshAll();
+    }
+
     private void refreshAll() {
         rebuildComplexPlane();
         paintCanvas();

@@ -27,6 +27,10 @@ public class CommandListener extends KeyAdapter {
             case KeyEvent.VK_0 -> increasePrecision();
             case KeyEvent.VK_P -> useHighPrecision();
             case KeyEvent.VK_F -> useFastPrecision();
+            case KeyEvent.VK_W -> parameter1up();
+            case KeyEvent.VK_S -> parameter1down();
+            case KeyEvent.VK_D -> parameter2up();
+            case KeyEvent.VK_A -> parameter2down();
             case KeyEvent.VK_H -> help();
         }
     }
@@ -79,6 +83,22 @@ public class CommandListener extends KeyAdapter {
         fractalVisualizer.activatePrecision(false);
     }
 
+    private void parameter1up() {
+        fractalVisualizer.addToCalculatorParameter1(0.01);
+    }
+
+    private void parameter1down() {
+        fractalVisualizer.addToCalculatorParameter1(-0.01);
+    }
+
+    private void parameter2up() {
+        fractalVisualizer.addToCalculatorParameter2(0.01);
+    }
+
+    private void parameter2down() {
+        fractalVisualizer.addToCalculatorParameter2(-0.01);
+    }
+
     private void help() {
         System.out.println("====================================================");
         System.out.println();
@@ -93,6 +113,7 @@ public class CommandListener extends KeyAdapter {
         System.out.println(" - 0: increase precision");
         System.out.println(" - P: high precision");
         System.out.println(" - F: fast precision");
+        System.out.println(" - W, S, A, D: navigate the fractal navigate parameters fractal");
         System.out.println();
         System.out.println("----------------------------------");
         System.out.println();

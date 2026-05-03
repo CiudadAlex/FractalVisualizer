@@ -9,7 +9,7 @@ import javax.swing.*;
 
 public class Main {
 
-    // FIXME Cambiar con teclas precision
+    // FIXME Revisar iterations
     // FIXME Cambiar con teclas parametros de julia
     // FIXME Nuevos fractales diferentes
 
@@ -21,7 +21,7 @@ public class Main {
         double imag_center = 0;
         double step = 0.005;
         int iterations = 100;
-        boolean isMandelbrot = true;
+        boolean isMandelbrot = false;
         boolean usePrecision = false;
         int precision = 30;
         int numThreads = 16;

@@ -7,4 +7,8 @@ public interface Calculator {
     int calculate(double real, double imaginary);
 
     int calculate(BigDecimal real, BigDecimal imaginary);
+
+    void addToParameter1(double delta);
+
+    void addToParameter2(double delta);
 }
