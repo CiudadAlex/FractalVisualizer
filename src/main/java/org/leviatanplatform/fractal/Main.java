@@ -10,6 +10,9 @@ import javax.swing.*;
 public class Main {
 
     // FIXME execute in multiple threads
+    // FIXME truncar mantisa BigDecimal
+    // FIXME Cambiar con teclas parametros de julia
+    // FIXME Nuevos fractales diferentes
 
     public static void main(String[] args) {
 

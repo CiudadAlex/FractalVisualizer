@@ -21,7 +21,7 @@ class JuliaUtilsTest {
 
         BigDecimal c_real = BigDecimal.valueOf(-0.16);
         BigDecimal c_imaginary = BigDecimal.valueOf(-0.16);
-        int iterations = 20;
+        int iterations = 100;
         int value = JuliaUtils.calculate(BigDecimal.ZERO, BigDecimal.ZERO, c_real, c_imaginary, iterations);
         System.out.println("value = " + value);
     }
