@@ -1,5 +1,6 @@
 package org.leviatanplatform.fractal;
 
+import org.leviatanplatform.fractal.engine.calculators.AlexCalculator;
 import org.leviatanplatform.fractal.engine.calculators.Calculator;
 import org.leviatanplatform.fractal.engine.calculators.JuliaCalculator;
 import org.leviatanplatform.fractal.engine.calculators.MandelbrotCalculator;
@@ -27,6 +28,7 @@ public class Main {
 
         Calculator mandelbrotCalculator = new MandelbrotCalculator(iterations);
         Calculator juliaCalculator = new JuliaCalculator(0.5, -0.3, iterations);
+        Calculator alexCalculator = new AlexCalculator();
 
         Calculator calculator = isMandelbrot ? mandelbrotCalculator : juliaCalculator;
 
