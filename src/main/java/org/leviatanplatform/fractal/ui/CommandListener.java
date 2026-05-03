@@ -80,6 +80,8 @@ public class CommandListener extends KeyAdapter {
     }
 
     private void help() {
+        System.out.println("====================================================");
+        System.out.println();
         System.out.println("Useful keys:");
         System.out.println(" - Arrows to navigate the fractal");
         System.out.println(" - H: help");
@@ -91,5 +93,17 @@ public class CommandListener extends KeyAdapter {
         System.out.println(" - 0: increase precision");
         System.out.println(" - P: high precision");
         System.out.println(" - F: fast precision");
+        System.out.println();
+        System.out.println("----------------------------------");
+        System.out.println();
+        System.out.println("Parameters");
+        System.out.println(" - center real: " + fractalVisualizer.getReal_center());
+        System.out.println(" - center imag: " + fractalVisualizer.getImag_center());
+        System.out.println(" - step: " + fractalVisualizer.getStep());
+        System.out.println(" - iterations: " + fractalVisualizer.getIterations());
+        System.out.println(" - use precision: " + fractalVisualizer.isUsePrecision());
+        System.out.println(" - precision: " + fractalVisualizer.getPrecision());
+        System.out.println();
+        System.out.println("====================================================");
     }
 }

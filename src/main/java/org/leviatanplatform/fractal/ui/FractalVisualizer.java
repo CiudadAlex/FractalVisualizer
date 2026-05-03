@@ -238,4 +238,28 @@ public class FractalVisualizer {
         return new Color(r_ok, g_ok, b_ok);
     }
 
+    public BigDecimal getReal_center() {
+        return real_center;
+    }
+
+    public BigDecimal getImag_center() {
+        return imag_center;
+    }
+
+    public BigDecimal getStep() {
+        return step;
+    }
+
+    public int getIterations() {
+        return iterations;
+    }
+
+    public boolean isUsePrecision() {
+        return usePrecision;
+    }
+
+    public int getPrecision() {
+        return precision;
+    }
+
 }
