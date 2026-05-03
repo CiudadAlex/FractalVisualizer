@@ -1,10 +1,13 @@
 package org.leviatanplatform.fractal.engine;
 
+import com.google.common.collect.Lists;
 import org.leviatanplatform.fractal.engine.calculators.Calculator;
 import org.leviatanplatform.fractal.engine.calculators.utils.BigDecimalCalculator;
 import org.leviatanplatform.fractal.engine.calculators.utils.TicToc;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ComplexPlane {
 
@@ -72,19 +75,51 @@ public class ComplexPlane {
 
     public void calculatePrecision(Calculator calculator) {
 
-        // FIXME threads (numThreads)
-
         BigDecimalCalculator bigDecimalCalculator = BigDecimalCalculator.get();
 
         System.out.println("Calculation precise: " + bigDecimalCalculator.getPrecision());
 
         TicToc ticToc = new TicToc();
 
+        List<List<Integer>> partitionR = getPartitionReals();
+
+        List<Thread> listThread = new ArrayList<>();
+
+        for (List<Integer> subList : partitionR) {
+            // FIXME threads
+        }
+
+        join(listThread);
+
         for (int r = 0; r < mumber_steps_real; r++) {
             calculatePrecisionRealColumn(calculator, bigDecimalCalculator, r);
         }
 
         ticToc.toc("Precision calculus");
+    }
+
+    private static void join(List<Thread> listThread) {
+
+        for (Thread thread : listThread) {
+            try {
+                thread.join();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
+    private List<List<Integer>> getPartitionReals() {
+
+        List<Integer> listR = new ArrayList<>();
+
+        for (int r = 0; r < mumber_steps_real; r++) {
+            listR.add(r);
+        }
+
+        int sizeSubList = (listR.size() / numThreads) + 1;
+
+        return Lists.partition(listR, sizeSubList);
     }
 
     private void calculatePrecisionRealColumn(Calculator calculator, BigDecimalCalculator bigDecimalCalculator, int r) {
