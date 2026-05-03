@@ -50,16 +50,16 @@ public class JuliaUtils {
 
         for (int i = 0; i < iterations; i++) {
 
-            BigDecimal zre2 = zre.multiply(zre);
-            BigDecimal zim2 = zim.multiply(zim);
+            BigDecimal zre2 = BigDecimalUtils.multiply(zre, zre);
+            BigDecimal zim2 = BigDecimalUtils.multiply(zim, zim);
 
             BigDecimal z2re = zre2.subtract(zim2);
-            BigDecimal z2im = zre.multiply(zim).multiply(VALUE_2);
+            BigDecimal z2im = BigDecimalUtils.multiply(VALUE_2, zre, zim);
 
             zre = z2re.add(c_real);
             zim = z2im.add(c_imaginary);
 
-            BigDecimal modulus = getModulus(zre, zim);
+            BigDecimal modulus = BigDecimalUtils.getModulus(zre, zim);
 
             if (modulus.compareTo(VALUE_10) > 0) {
                 // If exits return iteration
@@ -71,13 +71,7 @@ public class JuliaUtils {
         return -1;
     }
 
-    private static BigDecimal getModulus(BigDecimal real, BigDecimal imag) {
 
-        BigDecimal real2 = real.multiply(real);
-        BigDecimal imag2 = imag.multiply(imag);
-
-        return real2.add(imag2);
-    }
 
 
 }
