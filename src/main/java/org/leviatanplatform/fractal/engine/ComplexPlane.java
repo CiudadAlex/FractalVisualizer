@@ -97,13 +97,11 @@ public class ComplexPlane {
     }
 
     private Thread buildCalculationPrecisionThread(Calculator calculator, BigDecimalCalculator bigDecimalCalculator, List<Integer> subListR) {
-        return new Thread() {
-            public void run() {
-                for (Integer r: subListR) {
-                    calculatePrecisionRealColumn(calculator, bigDecimalCalculator, r);
-                }
+        return new Thread(() -> {
+            for (Integer r: subListR) {
+                calculatePrecisionRealColumn(calculator, bigDecimalCalculator, r);
             }
-        };
+        });
     }
 
     private void join(List<Thread> listThread) {

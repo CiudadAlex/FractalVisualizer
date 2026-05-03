@@ -9,7 +9,6 @@ import javax.swing.*;
 
 public class Main {
 
-    // FIXME execute in multiple threads
     // FIXME Cambiar con teclas precision
     // FIXME Cambiar con teclas parametros de julia
     // FIXME Nuevos fractales diferentes
@@ -25,7 +24,7 @@ public class Main {
         boolean isMandelbrot = true;
         boolean usePrecision = false;
         int precision = 30;
-        int numThreads = 4;
+        int numThreads = 16;
 
         Calculator mandelbrotCalculator = new MandelbrotCalculator(iterations);
         Calculator juliaCalculator = new JuliaCalculator(0.5, -0.3, iterations);
