@@ -26,13 +26,14 @@ public class FractalVisualizer {
     private int iterations;
     private boolean usePrecision;
     private int precision;
+    private int numThreads;
 
-    public FractalVisualizer(double real_center, double imag_center, double step, Calculator calculator, int w, int h, int iterations, boolean usePrecision, int precision) {
+    public FractalVisualizer(double real_center, double imag_center, double step, Calculator calculator, int w, int h, int iterations, boolean usePrecision, int precision, int numThreads) {
 
         BigDecimalCalculator.set(precision);
 
         this.pixelCanvas = new PixelCanvas(w, h);
-        this.complexPlane = new ComplexPlane(real_center - w * step/2, imag_center - h * step/2, step, w, h);
+        this.complexPlane = new ComplexPlane(real_center - w * step/2, imag_center - h * step/2, step, w, h, numThreads);
         this.real_center = BigDecimal.valueOf(real_center);
         this.imag_center = BigDecimal.valueOf(imag_center);
         this.step = BigDecimal.valueOf(step);
@@ -42,6 +43,7 @@ public class FractalVisualizer {
         this.iterations = iterations;
         this.usePrecision = usePrecision;
         this.precision = precision;
+        this.numThreads = numThreads;
     }
 
     public void show() {
@@ -118,7 +120,7 @@ public class FractalVisualizer {
         // double imag_min = imag_center - h * step/2;
         BigDecimal imag_min = imag_center.subtract(BigDecimalCalculator.get().multiply(h/2.0, step));
 
-        this.complexPlane = new ComplexPlane(real_min, imag_min, step, w, h);
+        this.complexPlane = new ComplexPlane(real_min, imag_min, step, w, h, numThreads);
     }
 
     public void paintCanvas() {

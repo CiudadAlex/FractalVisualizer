@@ -18,9 +18,10 @@ public class ComplexPlane {
 
     private final int mumber_steps_real;
     private final int mumber_steps_imag;
+    private final int numThreads;
     private final int[][] plane;
 
-    public ComplexPlane(double real_min, double imag_min, double step, int mumber_steps_real, int mumber_steps_imag) {
+    public ComplexPlane(double real_min, double imag_min, double step, int mumber_steps_real, int mumber_steps_imag, int numThreads) {
         this.real_min = real_min;
         this.imag_min = imag_min;
         this.step = step;
@@ -30,11 +31,12 @@ public class ComplexPlane {
         this.bd_real_min = BigDecimal.valueOf(real_min);
         this.bd_imag_min = BigDecimal.valueOf(imag_min);
         this.bd_step = BigDecimal.valueOf(step);
+        this.numThreads = numThreads;
 
         plane = new int[mumber_steps_real][mumber_steps_imag];
     }
 
-    public ComplexPlane(BigDecimal bd_real_min, BigDecimal bd_imag_min, BigDecimal bd_step, int mumber_steps_real, int mumber_steps_imag) {
+    public ComplexPlane(BigDecimal bd_real_min, BigDecimal bd_imag_min, BigDecimal bd_step, int mumber_steps_real, int mumber_steps_imag, int numThreads) {
         this.bd_real_min = bd_real_min;
         this.bd_imag_min = bd_imag_min;
         this.bd_step = bd_step;
@@ -44,6 +46,7 @@ public class ComplexPlane {
         this.real_min = bd_real_min.doubleValue();
         this.imag_min = bd_imag_min.doubleValue();
         this.step = bd_step.doubleValue();
+        this.numThreads = numThreads;
 
         plane = new int[mumber_steps_real][mumber_steps_imag];
     }
@@ -69,7 +72,7 @@ public class ComplexPlane {
 
     public void calculatePrecision(Calculator calculator) {
 
-        // FIXME threads
+        // FIXME threads (numThreads)
 
         BigDecimalCalculator bigDecimalCalculator = BigDecimalCalculator.get();
 
