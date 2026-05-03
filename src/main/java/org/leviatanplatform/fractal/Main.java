@@ -10,7 +10,6 @@ import javax.swing.*;
 public class Main {
 
     // FIXME execute in multiple threads
-    // FIXME truncar mantisa BigDecimal
     // FIXME Cambiar con teclas parametros de julia
     // FIXME Nuevos fractales diferentes
 
@@ -23,7 +22,7 @@ public class Main {
         double step = 0.005;
         int iterations = 100;
         boolean isMandelbrot = true;
-        boolean usePrecision = false;
+        boolean usePrecision = true;
         int precision = 100;
 
         Calculator mandelbrotCalculator = new MandelbrotCalculator(iterations);
