@@ -14,19 +14,19 @@ public class FractalVisualizer {
 
     private static final List<Color> LIST_COLORS = generateListColor();
 
-    private PixelCanvas pixelCanvas;
+    private final PixelCanvas pixelCanvas;
     private ComplexPlane complexPlane;
     private BigDecimal real_center;
     private BigDecimal imag_center;
     private BigDecimal step;
-    private int w;
-    private int h;
-    private Calculator calculator;
+    private final int w;
+    private final int h;
+    private final Calculator calculator;
     private JFrame frame;
     private int iterations;
     private boolean usePrecision;
     private int precision;
-    private int numThreads;
+    private final int numThreads;
 
     public FractalVisualizer(double real_center, double imag_center, double step, Calculator calculator, int w, int h, int iterations, boolean usePrecision, int precision, int numThreads) {
 
@@ -71,8 +71,7 @@ public class FractalVisualizer {
         // this.imag_center = this.imag_center + stepsImag * step;
         this.imag_center = this.imag_center.add(BigDecimalCalculator.get().multiply(stepsImag, step));
 
-        rebuildComplexPlane();
-        paintCanvas();
+        refreshAll();
     }
 
     public void iterations(double times) {
@@ -82,6 +81,8 @@ public class FractalVisualizer {
         if (this.iterations < 10) {
             this.iterations = 10;
         }
+
+        System.out.println("iterations: " + iterations);
 
         refreshAll();
     }
@@ -102,7 +103,10 @@ public class FractalVisualizer {
 
     public void precision(int sum) {
 
-        this.precision = precision + sum;
+        this.precision = this.precision + sum;
+        BigDecimalCalculator.set(this.precision);
+
+        System.out.println("precision: " + precision);
 
         refreshAll();
     }
