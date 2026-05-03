@@ -16,6 +16,10 @@ public class BigDecimalCalculator {
         return multiply(d, BigDecimal.valueOf(i));
     }
 
+    public static BigDecimal multiply(double dd, BigDecimal d) {
+        return multiply(d, BigDecimal.valueOf(dd));
+    }
+
     public static BigDecimal multiply(BigDecimal d1, BigDecimal d2, BigDecimal d3) {
         return multiply(multiply(d1, d2), d3);
     }

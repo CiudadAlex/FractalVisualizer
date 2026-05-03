@@ -2,6 +2,7 @@ package org.leviatanplatform.fractal.ui;
 
 import org.leviatanplatform.fractal.engine.ComplexPlane;
 import org.leviatanplatform.fractal.engine.calculators.Calculator;
+import org.leviatanplatform.fractal.engine.calculators.utils.BigDecimalCalculator;
 
 import javax.swing.*;
 import java.awt.*;
@@ -58,10 +59,10 @@ public class FractalVisualizer {
     public void translate(int stepsReal, int stepsImag) {
 
         // this.real_center = this.real_center + stepsReal * step;
-        this.real_center = this.real_center.add(step.multiply(BigDecimal.valueOf(stepsReal)));
+        this.real_center = this.real_center.add(BigDecimalCalculator.multiply(stepsReal, step));
 
         // this.imag_center = this.imag_center + stepsImag * step;
-        this.imag_center = this.imag_center.add(step.multiply(BigDecimal.valueOf(stepsImag)));
+        this.imag_center = this.imag_center.add(BigDecimalCalculator.multiply(stepsImag, step));
 
         rebuildComplexPlane();
         paintCanvas();
@@ -81,7 +82,7 @@ public class FractalVisualizer {
     public void zoom(double times) {
 
         // this.step = times * step;
-        this.step = step.multiply(BigDecimal.valueOf(times));
+        this.step = BigDecimalCalculator.multiply(times, step);
 
         rebuildComplexPlane();
         paintCanvas();
@@ -90,10 +91,10 @@ public class FractalVisualizer {
     private void rebuildComplexPlane() {
 
         // double real_min = real_center - w * step/2;
-        BigDecimal real_min = real_center.subtract(step.multiply(BigDecimal.valueOf(w/2.0)));
+        BigDecimal real_min = real_center.subtract(BigDecimalCalculator.multiply(w/2.0, step));
 
         // double imag_min = imag_center - h * step/2;
-        BigDecimal imag_min = imag_center.subtract(step.multiply(BigDecimal.valueOf(h/2.0)));
+        BigDecimal imag_min = imag_center.subtract(BigDecimalCalculator.multiply(h/2.0, step));
 
         this.complexPlane = new ComplexPlane(real_min, imag_min, step, w, h);
     }
