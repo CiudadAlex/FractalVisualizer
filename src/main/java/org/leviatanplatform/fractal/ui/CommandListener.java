@@ -19,10 +19,15 @@ public class CommandListener extends KeyAdapter {
             case KeyEvent.VK_DOWN -> down();
             case KeyEvent.VK_LEFT -> left();
             case KeyEvent.VK_RIGHT -> right();
-            case KeyEvent.VK_Q -> zoomIn();
-            case KeyEvent.VK_A -> zoomOut();
-            case KeyEvent.VK_O -> decreaseIterations();
-            case KeyEvent.VK_P -> increaseIterations();
+            case KeyEvent.VK_2 -> zoomIn();
+            case KeyEvent.VK_1 -> zoomOut();
+            case KeyEvent.VK_U -> decreaseIterations();
+            case KeyEvent.VK_I -> increaseIterations();
+            case KeyEvent.VK_9 -> decreasePrecision();
+            case KeyEvent.VK_0 -> increasePrecision();
+            case KeyEvent.VK_P -> useHighPrecision();
+            case KeyEvent.VK_F -> useFastPrecision();
+            case KeyEvent.VK_H -> help();
         }
     }
 
@@ -56,5 +61,35 @@ public class CommandListener extends KeyAdapter {
 
     private void increaseIterations() {
         fractalVisualizer.iterations(2);
+    }
+
+    private void decreasePrecision() {
+        fractalVisualizer.precision(-2);
+    }
+
+    private void increasePrecision() {
+        fractalVisualizer.precision(2);
+    }
+
+    private void useHighPrecision() {
+        fractalVisualizer.activatePrecision(true);
+    }
+
+    private void useFastPrecision() {
+        fractalVisualizer.activatePrecision(false);
+    }
+
+    private void help() {
+        System.out.println("Useful keys:");
+        System.out.println(" - Arrows to navigate the fractal");
+        System.out.println(" - H: help");
+        System.out.println(" - 2: zoom in");
+        System.out.println(" - 1: zoom out");
+        System.out.println(" - U: decrease iterations");
+        System.out.println(" - I: increase iterations");
+        System.out.println(" - 9: decrease precision");
+        System.out.println(" - 0: increase precision");
+        System.out.println(" - P: high precision");
+        System.out.println(" - F: fast precision");
     }
 }

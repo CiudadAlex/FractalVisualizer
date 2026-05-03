@@ -81,7 +81,7 @@ public class FractalVisualizer {
             this.iterations = 10;
         }
 
-        paintCanvas();
+        refreshAll();
     }
 
     public void zoom(double times) {
@@ -89,6 +89,23 @@ public class FractalVisualizer {
         // this.step = times * step;
         this.step = BigDecimalCalculator.get().multiply(times, step);
 
+        refreshAll();
+    }
+
+    public void activatePrecision(boolean activate) {
+        usePrecision = activate;
+
+        refreshAll();
+    }
+
+    public void precision(int sum) {
+
+        this.precision = precision + sum;
+
+        refreshAll();
+    }
+
+    private void refreshAll() {
         rebuildComplexPlane();
         paintCanvas();
     }
