@@ -10,8 +10,6 @@ import javax.swing.*;
 
 public class Main {
 
-    // FIXME Revisar iterations
-
     public static void main(String[] args) {
 
         int w = 1000;
@@ -28,7 +26,7 @@ public class Main {
         Calculator juliaCalculator = new JuliaCalculator(0.5, -0.3);
         Calculator alexCalculator = new AlexCalculator();
 
-        Calculator calculator = juliaCalculator;
+        Calculator calculator = mandelbrotCalculator;
 
         SwingUtilities.invokeLater(() -> {
             FractalVisualizer fractalVisualizer = new FractalVisualizer(real_center, imag_center, step, calculator, w, h, iterations, usePrecision, precision, numThreads);
