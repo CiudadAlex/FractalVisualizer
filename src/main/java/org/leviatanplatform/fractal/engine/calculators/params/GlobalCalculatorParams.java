@@ -31,9 +31,11 @@ public class GlobalCalculatorParams {
 
     public void setPrecision(int precision) {
         this.precision = precision;
+        System.out.println("precision: " + precision);
     }
 
     public void setIterations(int iterations) {
         this.iterations = iterations;
+        System.out.println("iterations: " + iterations);
     }
 }

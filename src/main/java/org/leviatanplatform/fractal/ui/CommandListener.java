@@ -1,5 +1,7 @@
 package org.leviatanplatform.fractal.ui;
 
+import org.leviatanplatform.fractal.engine.calculators.params.GlobalCalculatorParams;
+
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
@@ -27,6 +29,7 @@ public class CommandListener extends KeyAdapter {
             case KeyEvent.VK_0 -> increasePrecision();
             case KeyEvent.VK_P -> useHighPrecision();
             case KeyEvent.VK_F -> useFastPrecision();
+            case KeyEvent.VK_K -> status();
             case KeyEvent.VK_W -> parameter1up();
             case KeyEvent.VK_S -> parameter1down();
             case KeyEvent.VK_D -> parameter2up();
@@ -100,6 +103,7 @@ public class CommandListener extends KeyAdapter {
     }
 
     private void help() {
+
         System.out.println("====================================================");
         System.out.println();
         System.out.println("Useful keys:");
@@ -113,17 +117,26 @@ public class CommandListener extends KeyAdapter {
         System.out.println(" - 0: increase precision");
         System.out.println(" - P: high precision");
         System.out.println(" - F: fast precision");
+        System.out.println(" - K: status");
         System.out.println(" - W, S, A, D: navigate the fractal navigate parameters fractal");
         System.out.println();
-        System.out.println("----------------------------------");
+        System.out.println("====================================================");
+    }
+
+    private void status() {
+
+        int iterations = GlobalCalculatorParams.get().getIterations();
+        int precision = GlobalCalculatorParams.get().getPrecision();
+
+        System.out.println("====================================================");
         System.out.println();
         System.out.println("Parameters");
         System.out.println(" - center real: " + fractalVisualizer.getReal_center());
         System.out.println(" - center imag: " + fractalVisualizer.getImag_center());
         System.out.println(" - step: " + fractalVisualizer.getStep());
-        System.out.println(" - iterations: " + fractalVisualizer.getIterations());
+        System.out.println(" - iterations: " + iterations);
         System.out.println(" - use precision: " + fractalVisualizer.isUsePrecision());
-        System.out.println(" - precision: " + fractalVisualizer.getPrecision());
+        System.out.println(" - precision: " + precision);
         System.out.println();
         System.out.println("====================================================");
     }

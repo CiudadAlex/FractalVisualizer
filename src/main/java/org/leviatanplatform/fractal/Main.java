@@ -24,8 +24,8 @@ public class Main {
         int precision = 30;
         int numThreads = 16;
 
-        Calculator mandelbrotCalculator = new MandelbrotCalculator(iterations);
-        Calculator juliaCalculator = new JuliaCalculator(0.5, -0.3, iterations);
+        Calculator mandelbrotCalculator = new MandelbrotCalculator();
+        Calculator juliaCalculator = new JuliaCalculator(0.5, -0.3);
         Calculator alexCalculator = new AlexCalculator();
 
         Calculator calculator = juliaCalculator;

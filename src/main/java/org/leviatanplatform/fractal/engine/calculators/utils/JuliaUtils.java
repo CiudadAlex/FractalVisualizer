@@ -1,5 +1,7 @@
 package org.leviatanplatform.fractal.engine.calculators.utils;
 
+import org.leviatanplatform.fractal.engine.calculators.params.GlobalCalculatorParams;
+
 import java.math.BigDecimal;
 
 /**
@@ -18,7 +20,9 @@ public class JuliaUtils {
     private static final BigDecimal VALUE_2 = BigDecimal.valueOf(2);
     private static final BigDecimal VALUE_10 = BigDecimal.valueOf(10);
 
-    public static int calculate(double z_real, double z_imaginary, double c_real, double c_imaginary, int iterations) {
+    public static int calculate(double z_real, double z_imaginary, double c_real, double c_imaginary) {
+
+        int iterations = GlobalCalculatorParams.get().getIterations();
 
         double zre = z_real;
         double zim = z_imaginary;
@@ -43,7 +47,9 @@ public class JuliaUtils {
         return -1;
     }
 
-    public static int calculate(BigDecimal z_real, BigDecimal z_imaginary, BigDecimal c_real, BigDecimal c_imaginary, int iterations) {
+    public static int calculate(BigDecimal z_real, BigDecimal z_imaginary, BigDecimal c_real, BigDecimal c_imaginary) {
+
+        int iterations = GlobalCalculatorParams.get().getIterations();
 
         BigDecimal zre = z_real;
         BigDecimal zim = z_imaginary;

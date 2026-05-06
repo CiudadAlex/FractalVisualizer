@@ -24,14 +24,13 @@ public class FractalVisualizer {
     private final int h;
     private final Calculator calculator;
     private JFrame frame;
-    private int iterations;
     private boolean usePrecision;
-    private int precision;
     private final int numThreads;
 
     public FractalVisualizer(double real_center, double imag_center, double step, Calculator calculator, int w, int h, int iterations, boolean usePrecision, int precision, int numThreads) {
 
         GlobalCalculatorParams.get().setPrecision(precision);
+        GlobalCalculatorParams.get().setIterations(iterations);
 
         this.pixelCanvas = new PixelCanvas(w, h);
         this.complexPlane = new ComplexPlane(real_center - w * step/2, imag_center - h * step/2, step, w, h, numThreads);
@@ -41,9 +40,7 @@ public class FractalVisualizer {
         this.w = w;
         this.h = h;
         this.calculator = calculator;
-        this.iterations = iterations;
         this.usePrecision = usePrecision;
-        this.precision = precision;
         this.numThreads = numThreads;
     }
 
@@ -77,13 +74,15 @@ public class FractalVisualizer {
 
     public void iterations(double times) {
 
-        this.iterations = (int) Math.round(times * this.iterations);
+        int iterations = GlobalCalculatorParams.get().getIterations();
 
-        if (this.iterations < 10) {
-            this.iterations = 10;
+        iterations = (int) Math.round(times * iterations);
+
+        if (iterations < 10) {
+            iterations = 10;
         }
 
-        System.out.println("iterations: " + iterations);
+        GlobalCalculatorParams.get().setIterations(iterations);
 
         refreshAll();
     }
@@ -104,10 +103,10 @@ public class FractalVisualizer {
 
     public void precision(int sum) {
 
-        this.precision = this.precision + sum;
-        GlobalCalculatorParams.get().setPrecision(this.precision);
+        int precision = GlobalCalculatorParams.get().getPrecision();
 
-        System.out.println("precision: " + precision);
+        precision = precision + sum;
+        GlobalCalculatorParams.get().setPrecision(precision);
 
         refreshAll();
     }
@@ -179,6 +178,7 @@ public class FractalVisualizer {
 
         // escapeVelocity  --> iterations
         // x               --> numColors
+        int iterations = GlobalCalculatorParams.get().getIterations();
 
         int escapeVelocity = iterations - escapedIteration;
         int numColors = LIST_COLORS.size();
@@ -263,16 +263,8 @@ public class FractalVisualizer {
         return step;
     }
 
-    public int getIterations() {
-        return iterations;
-    }
-
     public boolean isUsePrecision() {
         return usePrecision;
-    }
-
-    public int getPrecision() {
-        return precision;
     }
 
 }

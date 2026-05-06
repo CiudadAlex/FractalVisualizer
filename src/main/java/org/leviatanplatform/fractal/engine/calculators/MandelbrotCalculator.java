@@ -6,20 +6,17 @@ import java.math.BigDecimal;
 
 public class MandelbrotCalculator implements Calculator {
 
-    private int iterations;
-
-    public MandelbrotCalculator(int iterations) {
-        this.iterations = iterations;
+    public MandelbrotCalculator() {
     }
 
     @Override
     public int calculate(double real, double imaginary) {
-        return JuliaUtils.calculate(0, 0, real, imaginary, iterations);
+        return JuliaUtils.calculate(0, 0, real, imaginary);
     }
 
     @Override
     public int calculate(BigDecimal real, BigDecimal imaginary) {
-        return JuliaUtils.calculate(BigDecimal.ZERO, BigDecimal.ZERO, real, imaginary, iterations);
+        return JuliaUtils.calculate(BigDecimal.ZERO, BigDecimal.ZERO, real, imaginary);
     }
 
     @Override
