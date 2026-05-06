@@ -17,6 +17,9 @@ import java.math.BigDecimal;
  */
 public class AlexCalculator implements Calculator {
 
+    private double param_c_real;
+    private double param_c_imaginary;
+
     @Override
     public String getName() {
         return "Alex";
@@ -26,8 +29,8 @@ public class AlexCalculator implements Calculator {
     public int calculate(double c_real, double c_imaginary) {
 
         int iterations = 100;
-        double zre = 0;
-        double zim = 0;
+        double zre = param_c_real;
+        double zim = param_c_imaginary;
 
         for (int i = 0; i < iterations; i++) {
 
@@ -56,11 +59,11 @@ public class AlexCalculator implements Calculator {
 
     @Override
     public void addToParameter1(double delta) {
-
+        param_c_real = param_c_real + delta;
     }
 
     @Override
     public void addToParameter2(double delta) {
-
+        param_c_imaginary = param_c_imaginary + delta;
     }
 }

@@ -26,7 +26,7 @@ public class Main {
         Calculator juliaCalculator = new JuliaCalculator(0.5, -0.3);
         Calculator alexCalculator = new AlexCalculator();
 
-        Calculator calculator = mandelbrotCalculator;
+        Calculator calculator = alexCalculator;
 
         SwingUtilities.invokeLater(() -> {
             FractalVisualizer fractalVisualizer = new FractalVisualizer(real_center, imag_center, step, calculator, w, h, iterations, usePrecision, precision, numThreads);
