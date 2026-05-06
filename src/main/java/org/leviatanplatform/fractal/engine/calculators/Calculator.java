@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 
 public interface Calculator {
 
+    String getName();
+
     int calculate(double real, double imaginary);
 
     int calculate(BigDecimal real, BigDecimal imaginary);

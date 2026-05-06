@@ -18,6 +18,11 @@ import java.math.BigDecimal;
 public class AlexCalculator implements Calculator {
 
     @Override
+    public String getName() {
+        return "Alex";
+    }
+
+    @Override
     public int calculate(double c_real, double c_imaginary) {
 
         int iterations = 100;

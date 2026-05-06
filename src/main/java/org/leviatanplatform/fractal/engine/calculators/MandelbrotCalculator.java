@@ -10,6 +10,11 @@ public class MandelbrotCalculator implements Calculator {
     }
 
     @Override
+    public String getName() {
+        return "Mandelbrot";
+    }
+
+    @Override
     public int calculate(double real, double imaginary) {
         return JuliaUtils.calculate(0, 0, real, imaginary);
     }

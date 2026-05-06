@@ -148,6 +148,8 @@ public class FractalVisualizer {
 
     public void innerPaintCanvas() {
 
+        frame.setTitle(buildJFrameTitle());
+
         if (usePrecision) {
             complexPlane.calculatePrecision(calculator);
         } else {
@@ -163,6 +165,13 @@ public class FractalVisualizer {
         }
 
         pixelCanvas.repaint();
+    }
+
+    private String buildJFrameTitle() {
+
+        // FIXME title JFrame
+        String calculatorName = calculator.getName();
+        return "Fractal " + calculatorName + " ";
     }
 
     private Color getColor(int escapedIteration) {
