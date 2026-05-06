@@ -2,6 +2,7 @@ package org.leviatanplatform.fractal.engine;
 
 import com.google.common.collect.Lists;
 import org.leviatanplatform.fractal.engine.calculators.Calculator;
+import org.leviatanplatform.fractal.engine.calculators.params.GlobalCalculatorParams;
 import org.leviatanplatform.fractal.engine.calculators.utils.BigDecimalCalculator;
 import org.leviatanplatform.fractal.engine.calculators.utils.TicToc;
 
@@ -75,9 +76,7 @@ public class ComplexPlane {
 
     public void calculatePrecision(Calculator calculator) {
 
-        BigDecimalCalculator bigDecimalCalculator = BigDecimalCalculator.get();
-
-        System.out.println("Calculation precise: " + bigDecimalCalculator.getPrecision());
+        System.out.println("Calculation precise: " + GlobalCalculatorParams.get().getPrecision());
 
         TicToc ticToc = new TicToc();
 
@@ -86,7 +85,7 @@ public class ComplexPlane {
         List<Thread> listThread = new ArrayList<>();
 
         for (List<Integer> subListR : partitionR) {
-            Thread thread = buildCalculationPrecisionThread(calculator, bigDecimalCalculator, subListR);
+            Thread thread = buildCalculationPrecisionThread(calculator, subListR);
             thread.start();
             listThread.add(thread);
         }
@@ -96,10 +95,10 @@ public class ComplexPlane {
         ticToc.toc("Precision calculus");
     }
 
-    private Thread buildCalculationPrecisionThread(Calculator calculator, BigDecimalCalculator bigDecimalCalculator, List<Integer> subListR) {
+    private Thread buildCalculationPrecisionThread(Calculator calculator, List<Integer> subListR) {
         return new Thread(() -> {
             for (Integer r: subListR) {
-                calculatePrecisionRealColumn(calculator, bigDecimalCalculator, r);
+                calculatePrecisionRealColumn(calculator, r);
             }
         });
     }
@@ -128,12 +127,12 @@ public class ComplexPlane {
         return Lists.partition(listR, sizeSubList);
     }
 
-    private void calculatePrecisionRealColumn(Calculator calculator, BigDecimalCalculator bigDecimalCalculator, int r) {
+    private void calculatePrecisionRealColumn(Calculator calculator, int r) {
 
         for (int i = 0; i < mumber_steps_imag; i++) {
 
-            BigDecimal real = bd_real_min.add(bigDecimalCalculator.multiply(r, bd_step));
-            BigDecimal imaginary = bd_imag_min.add(bigDecimalCalculator.multiply(i, bd_step));
+            BigDecimal real = bd_real_min.add(BigDecimalCalculator.multiply(r, bd_step));
+            BigDecimal imaginary = bd_imag_min.add(BigDecimalCalculator.multiply(i, bd_step));
 
             plane[r][i] = calculator.calculate(real, imaginary);
         }

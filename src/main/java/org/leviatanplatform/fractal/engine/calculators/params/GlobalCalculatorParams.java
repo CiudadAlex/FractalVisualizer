@@ -7,7 +7,7 @@ public class GlobalCalculatorParams {
     public static GlobalCalculatorParams get() {
 
         if (instance == null) {
-            instance = new GlobalCalculatorParams(30, 100);
+            instance = new GlobalCalculatorParams(100, 100);
         }
 
         return instance;
