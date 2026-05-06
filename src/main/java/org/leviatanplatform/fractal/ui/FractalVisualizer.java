@@ -169,9 +169,12 @@ public class FractalVisualizer {
 
     private String buildJFrameTitle() {
 
-        // FIXME title JFrame
+        int iterations = GlobalCalculatorParams.get().getIterations();
+        int precision = GlobalCalculatorParams.get().getPrecision();
+        String strPrecision = usePrecision ? "" + precision : "NO";
+
         String calculatorName = calculator.getName();
-        return "Fractal " + calculatorName + " ";
+        return "Fractal " + calculatorName + " i:" + iterations + " p:" + strPrecision;
     }
 
     private Color getColor(int escapedIteration) {
